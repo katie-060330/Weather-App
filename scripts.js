@@ -21,6 +21,12 @@ async function checkWeather(city){
         document.querySelector(".huminity").innerHTML = data.main.humidity;  
         document.querySelector(".wind").innerHTML = data.wind.speed; 
 
+        let sunriseData = new Date(data.sys.sunrise * 1000);
+        let sunsetData = new Date(data.sys.sunset * 1000);
+        
+        document.querySelector(".sunrise").innerHTML = `${sunriseData.getHours()} ${sunriseData.getMinutes} ${sunriseData.getTimezoneOffset()}`;
+        document.querySelector(".sunset").innerHTML = `${sunsetData.getHours()} ${sunsetData.getMinutes} ${sunsetData.getTimezoneOffset()}`;
+
         if(data.weather[0].main === "Clouds"){
             weatherIcon.src ="images/clouds.png";
         }
