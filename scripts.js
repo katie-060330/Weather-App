@@ -24,9 +24,16 @@ async function checkWeather(city){
         let sunriseData = new Date(data.sys.sunrise * 1000);
         let sunsetData = new Date(data.sys.sunset * 1000);
         
-        document.querySelector(".sunrise").innerHTML = `${sunriseData.getHours()} ${sunriseData.getMinutes} ${sunriseData.getTimezoneOffset()}`;
-        document.querySelector(".sunset").innerHTML = `${sunsetData.getHours()} ${sunsetData.getMinutes} ${sunsetData.getTimezoneOffset()}`;
+        if (sunriseData.getMinutes() < 10){
+            document.querySelector(".sunrise").innerHTML = `${sunriseData.getHours()}:0${sunriseData.getMinutes()}`;
+            document.querySelector(".sunset").innerHTML = `${sunsetData.getHours()}:${sunsetData.getMinutes()}`;
 
+        }
+        if (sunsetData.getMinutes() < 10){
+            document.querySelector(".sunrise").innerHTML = `${sunriseData.getHours()}:${sunriseData.getMinutes()}`;
+            document.querySelector(".sunset").innerHTML = `${sunsetData.getHours()}:0${sunsetData.getMinutes()}`;
+
+        }
         if(data.weather[0].main === "Clouds"){
             weatherIcon.src ="images/clouds.png";
         }
