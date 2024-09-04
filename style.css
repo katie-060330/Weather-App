@@ -82,9 +82,9 @@ body{
     font-size: 28px;
     margin-top: -6px;
 }
-.weather{
-    /* display: none; */
-}
+/* .weather{
+    display: none;
+} */
 .error{
     display: none;
     text-align: left;
@@ -103,4 +103,28 @@ body{
    width: 60px;
     
    padding-right: 10px;
+}
+.favorited {
+    display: none;
+}
+.unfavorite {
+    display: inline-block;
+    margin-left: 20px;
+}
+.favoriteCities li{
+    display: inline-block; 
+    padding: 10px 20px;
+   width: 100%;
+    color: white; 
+    border-radius: 8px; 
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    margin: 10px; 
+    text-align: center;
+}
+.favoriteCities h3{
+    
+    margin: 10px;
+    margin-right: 50%;
+    
 }
