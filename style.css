@@ -128,3 +128,6 @@ body{
     margin-right: 50%;
     
 }
+.favorite-cities li{
+    cursor: pointer;
+}

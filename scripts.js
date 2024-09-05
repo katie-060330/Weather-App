@@ -7,8 +7,10 @@ const unfavbtn = document.querySelector(".unfavorited");
 const favbtn = document.querySelector(".favorited"); 
 const favCitiesList = document.querySelector(".favorite-cities");
 
+
 //this get the broweser to store any local files known as fav citys if not created it creates an array, hewnce it can have past data
 let favCities = JSON.parse(localStorage.getItem("favCities")) || [];
+renderFavorites();
 
 async function checkWeather(city){
     
@@ -31,6 +33,7 @@ async function checkWeather(city){
             updateStar(false, city); 
         }
 
+        renderFavorites();
         console.log(data);
         //target the html classes to change the values by the server
         document.querySelector(".city").innerHTML = data.name; 
@@ -74,9 +77,12 @@ async function checkWeather(city){
    
 }
 
+//EVENT LISTERNS 
+
 //when the earch bar is clicked you search the weather fo that city
 searchBtn.addEventListener("click", ()=>{
     checkWeather(searchBox.value);
+    
     document.querySelector(".favorited").style.display = "none";
     document.querySelector(".unfavorited").style.display = "block";
     
@@ -87,6 +93,8 @@ searchBtn.addEventListener("click", ()=>{
 document.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         checkWeather(searchBox.value);
+       
+       
         document.querySelector(".favorited").style.display = "none";
         document.querySelector(".unfavorited").style.display = "block";
 
@@ -118,6 +126,18 @@ favbtn.addEventListener("click", ()=>{
    
     
 }); 
+
+favCitiesList.addEventListener("click", (event) =>{
+    if(event.target.tagName === "LI"){
+        
+        const city = event.target.textContent; 
+        
+        searchBox.value = city;
+        
+        checkWeather(city);
+    }
+}); 
+
 
 //displays favorites 
 function renderFavorites() {
@@ -164,11 +184,4 @@ function checkIfInFavorites(city){
     return favCities.includes(city);
 
 }
-
-
-
-
-
-       
-    
 
